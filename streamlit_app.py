@@ -126,6 +126,7 @@ selected_nhs_number = st.sidebar.selectbox(
 
 # If we haven't selected a patient, then we go no further
 if selected_nhs_number == 'Choose':
+    st.markdown("This app demonstrates getting test data from the INT environment for PDS and for NRL. All personal data is synthetic, and all links are purely to illuatrate that the app works.")
     st.stop()
 
 # But if we have we call PDS, then call NRL
