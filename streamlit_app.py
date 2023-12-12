@@ -6,6 +6,7 @@ import jwt
 import uuid
 import time
 import requests
+import json
 
 # Creates a signed JWT
 def make_jwt():
@@ -160,5 +161,5 @@ else:
     for doc_ref in nrl_data["entry"]:
         st.write(doc_ref["resource"]["id"] + " [link](%s)" % doc_ref["resource"]["content"][0]["attachment"]["url"])
         if st.button("View Document Reference"):
-            st.code(doc_ref, language='json')
+            st.code(json.dumps(doc_ref, indent=2), language='json')
         st.divider()
