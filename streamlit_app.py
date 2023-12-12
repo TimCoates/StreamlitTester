@@ -146,16 +146,21 @@ with col2:
     st.markdown(pds_record["birthDate"])
     st.markdown(pds_record["gender"])
 
-nrl_data= call_nrl(selected_nhs_number, st.session_state['access_token'])
 
 # But we just list NRL docs as so
 if selected_nhs_number == 'Choose':
     st.header('Documents listed in NRL', divider='blue')
 else:
+    nrl_data = call_nrl(selected_nhs_number, st.session_state['access_token'])
     st.header('Documents listed in NRL for: ' + selected_nhs_number, divider='blue')
 
 if nrl_data["total"] == 0:
     st.write("None found")
 else:
-    for x in nrl_data["entry"]:
-        st.write(x["resource"]["id"] + " [link](%s)" % x["resource"]["content"][0]["attachment"]["url"])
+    index=0
+    for doc_ref in nrl_data["entry"]:
+        st.write(doc_ref["resource"]["id"] + " [link](%s)" % doc_ref["resource"]["content"][0]["attachment"]["url"])
+        if st.button("View Document Reference"):
+            st.code(doc_ref, language='json')
+        st.divider()
+        index = index + 1
