@@ -157,10 +157,8 @@ else:
 if nrl_data["total"] == 0:
     st.write("None found")
 else:
-    index=0
     for doc_ref in nrl_data["entry"]:
         st.write(doc_ref["resource"]["id"] + " [link](%s)" % doc_ref["resource"]["content"][0]["attachment"]["url"])
         if st.button("View Document Reference"):
             st.code(doc_ref, language='json')
         st.divider()
-        index = index + 1
