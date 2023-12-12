@@ -160,6 +160,6 @@ if nrl_data["total"] == 0:
 else:
     for doc_ref in nrl_data["entry"]:
         st.write(doc_ref["resource"]["id"] + " [link](%s)" % doc_ref["resource"]["content"][0]["attachment"]["url"])
-        if st.button("View Document Reference"):
+        if st.button("View Document Reference", key=doc_ref["resource"]["id"]):
             st.code(json.dumps(doc_ref, indent=2), language='json')
         st.divider()
